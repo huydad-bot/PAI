@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>원발성 부신기능부전 진단·치료 | Endocrine Society 2016</title>
+<style>
+  :root {
+    --bg: #f6f8fa;
+    --surface: #ffffff;
+    --surface2: #f0f2f5;
+    --border: #d0d7de;
+    --accent: #0969da;
+    --accent2: #0550ae;
+    --green: #1a7f37;
+    --yellow: #9a6700;
+    --red: #cf222e;
+    --orange: #bc4c00;
+    --text: #1f2328;
+    --text2: #57606a;
+    --adrenal: #7c3aed;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Pretendard', 'Noto Sans KR', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 16px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .header-inner { width: 100%; max-width: 960px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .logo-badge {
+    background: #7c3aed;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  header h1 { font-size: 18px; font-weight: 700; color: var(--text); }
+  .meta { color: var(--text2); font-size: 11px; }
+  .source-link { color: var(--accent2); font-size: 11px; text-decoration: none; }
+  .source-link:hover { text-decoration: underline; }
+
+  /* ── TABS ── */
+  .tab-bar {
+    display: flex;
+    justify-content: center;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    position: sticky;
+    top: 68px;
+    z-index: 99;
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab-bar-inner { width: 100%; max-width: 960px; display: flex; align-items: center; gap: 2px; padding: 0 8px; }
+  .tab {
+    padding: 8px 12px;
+    font-size: 12px;
+    color: var(--text2);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color .15s, border-color .15s;
+    user-select: none;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent2); border-bottom-color: var(--accent2); }
+  .tab-abbr-wrap {
+    display: flex;
+    align-items: center;
+    padding: 4px 6px;
+    margin-left: auto;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  /* ── MAIN ── */
+  .main { padding: 12px 16px; max-width: 960px; margin: 0 auto; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* ── GRID ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  @media (max-width: 700px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+
+  /* ── CARD ── */
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 10px; }
+  .card-header {
+    background: var(--surface2);
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+  }
+  .card-header .ch-title { display: flex; align-items: center; gap: 8px; }
+  .card-header .toggle { font-size: 14px; transition: transform .2s; }
+  .card-header.open .toggle { transform: rotate(180deg); }
+  .card-body { padding: 10px 12px; }
+  .card-body.collapsed { display: none; }
+
+  /* ── STAT ── */
+  .stat-row { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+  .stat-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; flex: 1; text-align: center; min-width: 90px; }
+  .stat-val { font-size: 18px; font-weight: 700; color: var(--accent2); }
+  .stat-lbl { font-size: 10px; color: var(--text2); margin-top: 2px; line-height: 1.4; }
+
+  /* ── GRADE BADGES ── */
+  .grade { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 700; white-space: nowrap; position: relative; cursor: help; }
+  .grade-strong-high { background: #dafbe1; color: #116329; border: 1px solid #1a7f37; }
+  .grade-strong-mod  { background: #dafbe1; color: #116329; border: 1px solid #57606a; }
+  .grade-strong-low  { background: #fff8c5; color: #7d4e00; border: 1px solid #9a6700; }
+  .grade-strong-vlow { background: #fff8c5; color: #7d4e00; border: 1px solid #d0a000; }
+  .grade-weak-high   { background: #ddf4ff; color: #0550ae; border: 1px solid #0550ae; }
+  .grade-weak-mod    { background: #ddf4ff; color: #0550ae; border: 1px solid #88b4e8; }
+  .grade-weak-low    { background: #f6f8fa; color: #57606a; border: 1px solid #57606a; }
+  .grade-weak-vlow   { background: #f6f8fa; color: #57606a; border: 1px solid #c0c8d0; }
+  .grade-bp          { background: #fff0fb; color: #9e2a7c; border: 1px solid #c078b8; }
+  .grade::after {
+    content: attr(data-tip);
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f2328;
+    color: #e6edf3;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 6px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    z-index: 500;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  }
+  .grade::before {
+    content: '';
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 1px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #1f2328;
+    z-index: 501;
+    pointer-events: none;
+  }
+  .grade:hover::after, .grade:hover::before { display: block; }
+
+  /* ── REC LIST ── */
+  .rec-list { list-style: none; }
+  .rec-item { padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-start; }
+  .rec-item:last-child { border-bottom: none; }
+  .rec-badges { display: flex; gap: 4px; flex-shrink: 0; margin-top: 2px; flex-wrap: nowrap; }
+  .rec-num { font-size: 10px; font-weight: 700; color: var(--adrenal); background: #f0e8ff; border: 1px solid #c4b0e8; border-radius: 3px; padding: 1px 5px; flex-shrink: 0; margin-top: 2px; }
+  .rec-text { font-size: 12px; color: var(--text); line-height: 1.55; }
+  .rec-text strong { color: var(--accent2); }
+
+  /* ── ALERT ── */
+  .alert { padding: 8px 12px; border-radius: 6px; font-size: 12px; margin: 8px 0; display: flex; gap: 8px; align-items: flex-start; }
+  .alert-danger  { background: #ffebe9; border-left: 3px solid var(--red);    color: #82071e; }
+  .alert-info    { background: #ddf4ff; border-left: 3px solid var(--accent2); color: #0550ae; }
+  .alert-warn    { background: #fff8c5; border-left: 3px solid var(--yellow); color: #7d4e00; }
+  .alert-success { background: #dafbe1; border-left: 3px solid var(--green);  color: #116329; }
+  .alert-purple  { background: #f0e8ff; border-left: 3px solid #7c3aed;       color: #4c1d95; }
+
+  /* ── TABLE ── */
+  .g-table { width: 100%; border-collapse: collapse; font-size: 11px; margin: 6px 0; }
+  .g-table th { background: var(--surface2); color: var(--text2); padding: 6px 8px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.3px; font-weight: 600; text-align: left; border-bottom: 1px solid var(--border); }
+  .g-table td { padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .g-table tr:last-child td { border-bottom: none; }
+  .g-table tr:hover td { background: rgba(0,0,0,0.02); }
+  .g-table .sec-row td { background: var(--surface2); color: var(--accent2); font-weight: 600; }
+
+  /* ── ACCORDION ── */
+  .acc { border: 1px solid var(--border); border-radius: 6px; margin-bottom: 6px; overflow: hidden; }
+  .acc-hdr { background: var(--surface2); padding: 8px 12px; font-size: 12px; font-weight: 600; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+  .acc-hdr:hover { background: #e5e9ef; }
+  .acc-hdr .acc-arrow { font-size: 11px; color: var(--text2); transition: transform .2s; }
+  .acc-hdr.open .acc-arrow { transform: rotate(90deg); }
+  .acc-body { display: none; padding: 10px 12px; font-size: 12px; line-height: 1.6; }
+  .acc-body p { margin-bottom: 6px; }
+  .acc-body p:last-child { margin-bottom: 0; }
+
+  /* ── SECTION LABEL ── */
+  .q-label { display: inline-block; background: #7c3aed; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 3px; margin-right: 6px; flex-shrink: 0; }
+  .sec-label { display: inline-block; background: #0550ae; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 3px; margin-right: 6px; }
+
+  /* ── PILL ── */
+  .pill { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: 10px; font-weight: 600; white-space: nowrap; }
+  .pill-danger  { background: #ffebe9; color: var(--red); }
+  .pill-warn    { background: #fff8c5; color: var(--yellow); }
+  .pill-info    { background: #ddf4ff; color: var(--accent2); }
+  .pill-success { background: #dafbe1; color: var(--green); }
+
+  /* ── DOSE TAG ── */
+  .dose { display: inline-block; background: #ddf4ff; color: #0550ae; border-radius: 3px; padding: 1px 7px; font-size: 11px; font-weight: 700; margin: 1px 2px; }
+  .dose-ok   { background: #dafbe1; color: #116329; }
+  .dose-warn { background: #fff8c5; color: #9a6700; }
+  .dose-bad  { background: #ffebe9; color: #cf222e; }
+
+  /* ── ABBR ── */
+  .abbr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 6px; }
+  .abbr-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; padding: 6px 10px; display: flex; flex-direction: column; gap: 2px; }
+  .abbr-term { font-weight: 700; color: var(--accent2); font-size: 12px; font-family: 'Courier New', monospace; white-space: nowrap; }
+  .abbr-def  { font-size: 11px; color: var(--text2); line-height: 1.45; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: #c8d0d9; border-radius: 3px; }
+
+  small { color: var(--text2); font-size: 10px; }
+  .sec-sep { height: 1px; background: var(--border); margin: 10px 0; }
+
+  .v-red    { color: var(--red); font-weight: 700; }
+  .v-green  { color: var(--green); font-weight: 700; }
+  .v-blue   { color: var(--accent2); font-weight: 700; }
+  .v-orange { color: var(--orange); font-weight: 700; }
+  .v-purple { color: #7c3aed; font-weight: 700; }
+
+  .cell-ok   { background: #dafbe1; color: #116329; font-weight: 600; text-align: center; }
+  .cell-warn { background: #fff8c5; color: #7d4e00; font-weight: 600; text-align: center; }
+  .cell-bad  { background: #ffebe9; color: #82071e; font-weight: 600; text-align: center; }
+  .cell-info { background: #ddf4ff; color: #0550ae; font-weight: 600; text-align: center; }
+
+  ul.blist { list-style: none; padding: 0; }
+  ul.blist li { padding: 3px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+  ul.blist li:last-child { border-bottom: none; }
+  ol.nlist { padding-left: 18px; }
+  ol.nlist li { font-size: 12px; padding: 2px 0; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div style="display:flex;align-items:center;gap:10px;justify-content:center;flex-wrap:wrap">
+      <span class="logo-badge">Endocrine Society 2016</span>
+      <h1>원발성 부신기능부전 진단·치료 가이드라인</h1>
+    </div>
+    <div style="text-align:center;margin-top:3px;line-height:1.5">
+      <a href="https://doi.org/10.1210/jc.2015-1710" class="source-link" target="_blank">J Clin Endocrinol Metab 2016;101(2):364–389 ↗</a>
+      <span class="meta"> · Bornstein SR et al. (chair) · 공동후원: ESE, AACC</span><br>
+      <span style="font-size:10px;color:var(--text2);font-style:italic">본 도구는 Endocrine Society 공식 승인 자료가 아닙니다</span>
+    </div>
+  </div>
+</header>
+
+<div class="tab-bar">
+  <div class="tab-bar-inner">
+    <div class="tab active" onclick="showTab('overview')">🏠 개요</div>
+    <div class="tab" onclick="showTab('diagnosis')">🔬 진단</div>
+    <div class="tab" onclick="showTab('tests')">🧪 검사법</div>
+    <div class="tab" onclick="showTab('treatment')">💊 치료</div>
+    <div class="tab" onclick="showTab('crisis')">🚨 부신위기</div>
+    <div class="tab" onclick="showTab('monitoring')">📋 모니터링</div>
+    <div class="tab" onclick="showTab('abbr')">📖 약어집</div>
+    <div class="tab-abbr-wrap">
+      <div style="position:relative;display:flex;align-items:center;flex-shrink:0">
+        <span style="position:absolute;left:8px;color:var(--text2);font-size:12px;pointer-events:none">🔍</span>
+        <input id="abbr-input" type="text" placeholder="약어 검색" oninput="filterAbbr(this.value)"
+          style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:4px 8px 4px 26px;color:var(--text);font-size:12px;width:120px;outline:none;"
+          onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+        <span id="abbr-count" style="position:absolute;right:7px;font-size:10px;color:var(--text2);pointer-events:none"></span>
+      </div>
+      <div id="abbr-dropdown" style="display:none;position:fixed;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px;width:460px;max-height:340px;overflow-y:auto;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,.12)">
+        <div id="abbr-grid-drop" style="display:grid;grid-template-columns:1fr"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════ OVERVIEW ═══════════════ -->
+<div id="tab-overview" class="panel active">
+
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-val" style="color:#7c3aed">100–140</div><div class="stat-lbl">유병률<br>(인구 100만 명당)</div></div>
+    <div class="stat-box"><div class="stat-val" style="color:var(--accent2)">~90%</div><div class="stat-lbl">자가면역 원인<br>(서구)</div></div>
+    <div class="stat-box"><div class="stat-val" style="color:var(--red)">8.3</div><div class="stat-lbl">부신위기 발생<br>(100 환자·년당)</div></div>
+    <div class="stat-box"><div class="stat-val" style="color:var(--yellow)">0.5</div><div class="stat-lbl">부신위기 사망률<br>(100 환자·년당)</div></div>
+    <div class="stat-box"><div class="stat-val" style="color:var(--orange)">46%</div><div class="stat-lbl">스트레스 시<br>스테로이드 관리 미숙</div></div>
+  </div>
+
+  <div class="alert alert-danger">
+    <span>🚨</span>
+    <div><strong>임상적 핵심:</strong> PAI는 비특이적 증상(피로, 체중감소, 복통 등)이 수개월~수년 지속되는 희귀질환. 진단 지연 시 급성 부신위기로 생명을 위협한다. 진단 지연 기간이 길수록 장기 HRQoL 저하. 즉각적 치료가 생명을 구한다.</div>
+  </div>
+
+  <!-- 권고안 요약 카드 -->
+  <div class="card">
+    <div class="card-header open" onclick="toggleCard(this)">
+      <div class="ch-title"><span>📋</span> 전체 권고안 요약 (24개)</div>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="card-body">
+      <div class="alert alert-info" style="margin-bottom:8px">
+        <span>ℹ️</span>
+        <div>GRADE 시스템: <strong>강력 권고(1) = "recommend"</strong>, <strong>약한 제안(2) = "suggest"</strong>. 증거 수준: ⊕⊕⊕⊕ 높음 / ⊕⊕⊕○ 중등 / ⊕⊕○○ 낮음 / ⊕○○○ 매우 낮음. <span class="grade grade-bp" data-tip="Ungraded best practice statement">BP</span> = 비등급 best practice.</div>
+      </div>
+
+      <!-- Section 1 -->
+      <div style="font-size:11px;font-weight:700;color:var(--text2);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.5px">Section 1. 검사 대상 및 방법</div>
+      <ul class="rec-list">
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">1.1</span><span class="grade grade-strong-mod" data-tip="Strong recommendation, moderate-quality evidence (1⊕⊕⊕○)">1/Mod</span></div>
+          <div class="rec-text">급성기 환자에서 PAI 의심 증상·징후(volume depletion, 저혈압, 저나트륨혈증, 고칼륨혈증, 발열, 복통, 피부색소침착, 소아 저혈당) 시 <strong>진단 검사 권고</strong></div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">1.2</span><span class="grade grade-strong-high" data-tip="Strong recommendation, high-quality evidence (1⊕⊕⊕⊕)">1/High</span></div>
+          <div class="rec-text">상태 허용 시 <strong>코르티코트로핀 자극검사로 확진</strong></div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">1.3</span><span class="grade grade-strong-mod" data-tip="Strong recommendation, moderate-quality evidence (1⊕⊕⊕○)">1/Mod</span></div>
+          <div class="rec-text">중증 부신기능부전·부신위기 의심 시 <strong>검사 결과 전 즉시 IV hydrocortisone 투여</strong></div>
+        </li>
+      </ul>
+
+      <!-- Section 2 -->
+      <div style="font-size:11px;font-weight:700;color:var(--text2);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.5px">Section 2. 최적 진단 검사</div>
+      <ul class="rec-list">
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">2.1</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text">표준 용량(250 μg) IV 코르티코트로핀 자극검사; <strong>peak cortisol &lt;500 nmol/L(18 μg/dL)</strong> → 부신기능부전</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">2.2</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text">저용량(1 μg) 자극검사는 물질 부족 시에만 사용</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">2.3</span><span class="grade grade-weak-vlow" data-tip="Weak recommendation, very low-quality evidence (2⊕○○○)">2/VLow</span></div>
+          <div class="rec-text">자극검사 불가 시: 오전 cortisol ≤140 nmol/L + <strong>ACTH 상승</strong> → 예비 진단</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">2.4</span><span class="grade grade-strong-mod" data-tip="Strong recommendation, moderate-quality evidence (1⊕⊕⊕○)">1/Mod</span></div>
+          <div class="rec-text"><strong>혈장 ACTH 측정</strong> 권고; cortisol 결핍 확인 시 ACTH ≥정상 상한 2배 → PAI 합치</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">2.5</span><span class="grade grade-strong-mod" data-tip="Strong recommendation, moderate-quality evidence (1⊕⊕⊕○)">1/Mod</span></div>
+          <div class="rec-text"><strong>혈장 renin + aldosterone 동시 측정</strong> → 무기질코르티코이드 결핍 평가</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">2.6</span><span class="grade grade-bp" data-tip="Ungraded best practice statement">BP</span></div>
+          <div class="rec-text">확진된 모든 PAI에서 <strong>원인 규명</strong> 시행 (Table 2, Figure 1 참조)</div>
+        </li>
+      </ul>
+
+      <!-- Section 3 -->
+      <div style="font-size:11px;font-weight:700;color:var(--text2);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.5px">Section 3. 성인 치료</div>
+      <ul class="rec-list">
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.1</span><span class="grade grade-strong-high" data-tip="Strong recommendation, high-quality evidence (1⊕⊕⊕⊕)">1/High</span></div>
+          <div class="rec-text">확진된 모든 PAI에서 <strong>글루코코르티코이드 치료</strong></div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.2</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text"><strong>Hydrocortisone 15–25 mg/일</strong> 또는 cortisone acetate 20–35 mg/일, 2–3회 분복 (아침 최대 용량)</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.3</span><span class="grade grade-weak-vlow" data-tip="Weak recommendation, very low-quality evidence (2⊕○○○)">2/VLow</span></div>
+          <div class="rec-text">순응도 저하 시 대안: prednisolone <strong>3–5 mg/일</strong> 1–2회</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.4</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text"><strong>Dexamethasone은 PAI에 비권고</strong> (쿠싱 부작용, 용량 적정 어려움)</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.5–3.6</span><span class="grade grade-weak-mod" data-tip="Weak recommendation, moderate-quality evidence (2⊕⊕⊕○)">2/Mod</span></div>
+          <div class="rec-text">임상 평가 기반 모니터링; <strong>ACTH 기반 용량 조절 지양</strong></div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.7</span><span class="grade grade-strong-high" data-tip="Strong recommendation, high-quality evidence (1⊕⊕⊕⊕)">1/High</span></div>
+          <div class="rec-text">Aldosterone 결핍 시 <strong>fludrocortisone 50–100 μg/일</strong>; 염분 제한 금지</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.8</span><span class="grade grade-strong-mod" data-tip="Strong recommendation, moderate-quality evidence (1⊕⊕⊕○)">1/Mod</span></div>
+          <div class="rec-text">무기질코르티코이드 모니터링: 임상 평가 + 전해질</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.9–3.10</span><span class="grade grade-weak-vlow" data-tip="Weak recommendation, very low-quality evidence (2⊕○○○)">2/VLow</span></div>
+          <div class="rec-text">Fludrocortisone 중 고혈압 → 감량; 조절 불충분 → 항고혈압제 추가 + fludrocortisone 유지</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.11–3.13</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text">여성 PAI + 성욕 저하·우울·에너지 저하 시 <strong>DHEA 25–50 mg/일</strong> 6개월 시험 투여</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.14–3.15</span><span class="grade grade-bp" data-tip="Ungraded best practice statement">BP</span></div>
+          <div class="rec-text">임신 중: 분기별 모니터링; 3분기 hydrocortisone 증량 (일반적으로 24주 이후 20–40%)</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.16</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text">임신 중 <strong>hydrocortisone 선택</strong>; <span style="color:var(--red);font-weight:700">dexamethasone 금기</span> (태반 통과)</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.17</span><span class="grade grade-strong-low" data-tip="Strong recommendation, low-quality evidence (1⊕⊕○○)">1/Low</span></div>
+          <div class="rec-text">분만 active phase에서 <strong>대수술 준하는 stress dosing</strong> 권고</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.18–3.19</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text">소아: hydrocortisone <strong>8 mg/m²/일</strong> 3–4회 분복; 합성 장기지속 GC 회피</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.21</span><span class="grade grade-strong-low" data-tip="Strong recommendation, low-quality evidence (1⊕⊕○○)">1/Low</span></div>
+          <div class="rec-text">소아: fludrocortisone <strong>100 μg/일</strong>; 영아 NaCl 1–2 g/일 (신생아~12개월)</div>
+        </li>
+      </ul>
+
+      <!-- Section 4 -->
+      <div style="font-size:11px;font-weight:700;color:var(--text2);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.5px">Section 4. 부신위기 관리 및 예방</div>
+      <ul class="rec-list">
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">4.1</span><span class="grade grade-strong-mod" data-tip="Strong recommendation, moderate-quality evidence (1⊕⊕⊕○)">1/Mod</span></div>
+          <div class="rec-text">부신위기 의심 → 즉시 <strong>hydrocortisone 100 mg IV</strong> + 200 mg/24h 지속 + 수액 소생</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">4.2</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text">HC 없을 시 prednisolone 대체; dexamethasone은 최후 수단</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">4.3–4.6</span><span class="grade grade-bp" data-tip="Ungraded best practice statement">BP</span></div>
+          <div class="rec-text">스트레스 시 용량 조절 교육; <strong>스테로이드 응급카드</strong> + 의료경보 식별표; <strong>응급 주사 키트</strong> 처방 및 교육</div>
+        </li>
+      </ul>
+
+      <!-- Section 5 -->
+      <div style="font-size:11px;font-weight:700;color:var(--text2);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.5px">Section 5. 추가 모니터링</div>
+      <ul class="rec-list">
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">5.1–5.5</span><span class="grade grade-bp" data-tip="Ungraded best practice statement">BP</span></div>
+          <div class="rec-text">연 1회 내분비 전문의 추적; 동반 자가면역 질환 연 1회 선별 (갑상선, T1DM, 조기 난소부전, 복강병, 자가면역 위염); 단일유전자 질환 유전 상담</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 임상 특징 표 -->
+  <div class="card">
+    <div class="card-header open" onclick="toggleCard(this)">
+      <div class="ch-title"><span>🩺</span> 임상 특징 (Table 1)</div>
+      <span class="toggle">▾</span>
+    </div>
+    <div class="card-body">
+      <table class="g-table">
+        <tr><th></th><th>증상 (Symptoms)</th><th>징후 (Signs)</th><th>기본 검사 소견</th></tr>
+        <tr>
+          <td style="font-weight:700;white-space:nowrap">부신기능부전</td>
+          <td>피로, 체중감소, 기립어지럼증, 식욕부진, 복부불편감</td>
+          <td>피부색소침착 (일광노출부위, 피부주름, 점막, 반흔, 유두), 저혈압·기립성 저혈압, 소아 성장부전</td>
+          <td>저나트륨혈증, 고칼륨혈증<br><small>드물게: 저혈당, 고칼슘혈증</small></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700;white-space:nowrap">부신위기</td>
+          <td>심한 무력감, 실신, 복통·오심·구토 (급성복증 유사), 요통, 혼돈</td>
+          <td>저혈압, 복부압통·방어, 의식저하, 섬망</td>
+          <td class="cell-bad">저Na, 고K, 저혈당, 고Ca</td>
+        </tr>
+      </table>
+      <div class="alert alert-warn" style="margin-top:8px">
+        <span>⚠️</span>
+        <div>대부분의 증상은 비특이적이며 만성적으로 발현되어 진단 지연이 흔하다. 저나트륨혈증·고칼륨혈증이 진단 단서가 되는 경우가 많다. <strong>피부색소침착</strong>은 PAI에 특이적이나 개인 배경 색소와 비교 필요.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ 진단 ═══════════════ -->
+<div id="tab-diagnosis" class="panel">
+
+  <div class="alert alert-purple" style="margin-bottom:10px">
+    <span>📌</span>
+    <div>진단 검사의 역치를 낮게 유지하라. PAI는 증상이 비특이적이고 수년간 잠행성으로 진행된다. 급성기에서는 검사 결과를 기다리지 말고 즉시 치료하라.</div>
+  </div>
+
+  <!-- Q1: 검사 대상 -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q1</span> 어떤 환자에서 PAI 진단 검사가 필요한가?</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <ul class="rec-list">
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">1.1</span><span class="grade grade-strong-mod" data-tip="Strong recommendation, moderate-quality evidence (1⊕⊕⊕○)">1/Mod</span></div>
+          <div class="rec-text">달리 설명할 수 없는 다음 증상·징후가 있는 급성기 환자에서 PAI 배제 진단 검사를 권고한다:<br>Volume depletion, 저혈압, 저나트륨혈증, 고칼륨혈증, 발열, 복통, 피부색소침착, <strong>소아에서는 특히 저혈당</strong></div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">1.2</span><span class="grade grade-strong-high" data-tip="Strong recommendation, high-quality evidence (1⊕⊕⊕⊕)">1/High</span></div>
+          <div class="rec-text">환자 상태와 상황이 허용되는 경우 <strong>코르티코트로핀 자극검사로 확진</strong>할 것을 권고한다.</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">1.3</span><span class="grade grade-strong-mod" data-tip="Strong recommendation, moderate-quality evidence (1⊕⊕⊕○)">1/Mod</span></div>
+          <div class="rec-text">중증 부신기능부전 증상 또는 부신위기 환자에서는 <strong>진단 검사 결과 전 즉시 IV hydrocortisone 투여</strong>를 권고한다.</div>
+        </li>
+      </ul>
+      <div class="alert alert-danger">
+        <span>🚨</span>
+        <div><strong>핵심 원칙:</strong> 스테로이드 투여 전 반드시 ACTH + cortisol 채혈(기저치)을 먼저 완료하라. 치료를 지연시켜서는 안 된다. 환자 안정화 후 일시적 GC 중단하여 확인 자극검사 시행 가능.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q2: PAI 원인 -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q2</span> PAI의 주요 원인 분류 및 감별 진단 (Table 2)</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <table class="g-table">
+        <tr><th>원인 분류</th><th>세부 유형</th><th>관련 특징 / 진단 단서</th></tr>
+        <tr class="sec-row"><td colspan="3">자가면역성 (가장 흔함, 서구 성인의 ~90%)</td></tr>
+        <tr><td>단독 자가면역</td><td>Isolated PAI</td><td>21-수산화효소 항체(CYP21A2-Ab) 양성</td></tr>
+        <tr><td>APS type 1 (APECED)</td><td>AIRE 유전자 돌연변이</td><td>만성 피부점막 칸디다증, 부갑상선기능저하증</td></tr>
+        <tr><td>APS type 2</td><td>HLA 연관</td><td>자가면역 갑상선질환, T1DM</td></tr>
+        <tr class="sec-row"><td colspan="3">부신 침윤/손상</td></tr>
+        <tr><td>부신 출혈</td><td></td><td>패혈증, 항응고제, 항카디오리핀/루푸스 항응고인자</td></tr>
+        <tr><td>부신 전이</td><td></td><td>폐암, 유방암, 대장암, 흑색종, 림프종</td></tr>
+        <tr><td>감염성 부신염</td><td></td><td>결핵, HIV/AIDS, CMV, 칸디다증, 히스토플라스마증</td></tr>
+        <tr><td>침윤성 질환</td><td></td><td>혈색소침착증, 원발성 아밀로이드증</td></tr>
+        <tr><td>양측 부신절제술</td><td></td><td>난치성 쿠싱증후군, 양측 갈색세포종</td></tr>
+        <tr class="sec-row"><td colspan="3">유전성/발달성 (소아에서 흔함)</td></tr>
+        <tr><td>CAH</td><td>21-수산화효소 결핍 (가장 흔함)</td><td>소아 PAI의 80%; 고안드로겐증, 17-OHP↑</td></tr>
+        <tr><td>X-ALD</td><td>ABCD1 돌연변이</td><td>남아 2–10세; VLCFA 측정</td></tr>
+        <tr><td>ACTH 불감증</td><td>Triple A 증후군 등</td><td>MC2R 돌연변이, MRAP 돌연변이</td></tr>
+        <tr class="sec-row"><td colspan="3">약물 유발</td></tr>
+        <tr><td>부신효소 억제제</td><td></td><td>미토탄, 케토코나졸, 메티라폰, 에토미데이트</td></tr>
+        <tr><td>CYP3A4 유도제</td><td></td><td>카바마제핀, 리팜피신, St. John's wort</td></tr>
+        <tr><td>Levothyroxine (T4)</td><td></td><td>코르티솔 대사 가속 (11β-HSD2 자극)</td></tr>
+        <tr><td>면역관문억제제</td><td>CTLA-4i, PD-1i</td><td>자가면역 부신염 유발; 종양학 분야 증가 추세</td></tr>
+      </table>
+      <div class="alert alert-info" style="margin-top:8px">
+        <span>🔍</span>
+        <div><strong>원인 규명 알고리즘 (Figure 1) 요약:</strong>
+        <ol class="nlist" style="margin-top:4px">
+          <li>21-수산화효소 항체 (CYP21A2-Ab) → 자가면역 확인</li>
+          <li>항체 음성 남성 → VLCFA (X-ALD 배제)</li>
+          <li>소아 → 17-OHP ≥1000 ng/dL: 21-OH 결핍 진단</li>
+          <li>상기 음성 + 원인 불명 → CT 부신 촬영 (결핵, 전이, 침윤)</li>
+        </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q3: 임신 중 진단 -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q3</span> 임신 중 PAI 진단의 특수성</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <p>임신 중 PAI 진단은 증상이 생리적 변화(오심, 저혈압, 피로)와 중복되어 매우 도전적이다. 미치료 PAI는 임신부에서 높은 사망률과 관련된다.</p>
+      <div class="alert alert-warn" style="margin-top:8px">
+        <span>⚠️</span>
+        <div><strong>임신 분기별 코르티코트로핀 자극검사 판정 기준:</strong><br>
+        임신 중 total cortisol은 CBG 증가로 2–3배 상승. 제안된 정상 기준:<br>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+          <span class="dose dose-ok">1분기 ≥700 nmol/L (25 μg/dL)</span>
+          <span class="dose dose-ok">2분기 ≥800 nmol/L (29 μg/dL)</span>
+          <span class="dose dose-ok">3분기 ≥900 nmol/L (32 μg/dL)</span>
+        </div>
+        </div>
+      </div>
+      <div class="alert alert-info" style="margin-top:6px">
+        <span>ℹ️</span>
+        <div>임신 중 혈장 renin은 생리적으로 증가하므로 무기질코르티코이드 모니터링 지표로 사용 불가.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ 검사법 ═══════════════ -->
+<div id="tab-tests" class="panel">
+
+  <div class="alert alert-info" style="margin-bottom:10px">
+    <span>📌</span>
+    <div>PAI 진단의 "gold standard"는 코르티코트로핀 자극검사. 결과는 assay 의존적이므로 해당 검사실의 정규화 데이터를 기준으로 판정.</div>
+  </div>
+
+  <!-- 표준 자극검사 -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q4</span> 표준(250 μg) 코르티코트로핀 자극검사 — 프로토콜 및 판정</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <ul class="rec-list">
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">2.1</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text">부신기능부전 진단을 위해 표준 용량 IV 코르티코트로핀 자극검사 권장. <strong>30 또는 60분 peak cortisol &lt;500 nmol/L(18 μg/dL)</strong> → 부신기능부전 (assay 의존적).</div>
+        </li>
+      </ul>
+      <table class="g-table" style="margin-top:8px">
+        <tr><th>항목</th><th>내용</th></tr>
+        <tr><td>약제명</td><td>코신트로핀(cosyntropin) = 테트라코사크타이드(tetracosactide); ACTH 1–24 합성 펩타이드</td></tr>
+        <tr><td>용량</td><td><span class="dose dose-ok">성인 / 2세 이상: 250 μg</span>&nbsp;<span class="dose">2세 미만: 125 μg</span>&nbsp;<span class="dose">영아: 15 μg/kg</span></td></tr>
+        <tr><td>투여 경로</td><td>IV 또는 IM 볼루스 주사</td></tr>
+        <tr><td>채혈 시점</td><td>0분(기저치), 30분, 60분</td></tr>
+        <tr><td>판정 기준</td><td><span class="dose dose-bad">Peak cortisol &lt;500 nmol/L (18 μg/dL)</span> → 부신기능부전</td></tr>
+        <tr><td>민감도</td><td>92% (95% CI 81–97%); 5개 1차 연구 메타분석</td></tr>
+        <tr><td>시행 시간</td><td>하루 중 언제든 가능 (일중변동 영향 미미)</td></tr>
+      </table>
+      <div class="alert alert-warn" style="margin-top:8px">
+        <span>⚠️</span>
+        <div><strong>Assay별 cut-off 차이:</strong> 면역검사법 방법에 따라 418–574 nmol/L (15.2–20.8 μg/dL)로 다양. 임상 판정 시 해당 검사실 assay 특이적 데이터 기준 사용.</div>
+      </div>
+      <div class="alert alert-info" style="margin-top:6px">
+        <span>ℹ️</span>
+        <div><strong>CBG 변화가 결과에 영향을 주는 상황:</strong>
+        <ul class="blist" style="margin-top:4px">
+          <li><span class="v-red">CBG 증가</span>: 경구 피임약, 임신, 미토탄 → cortisol 과대측정 가능</li>
+          <li><span class="v-blue">CBG 감소</span>: 염증, 간질환, 신증후군, 중환자, 수술 직후 → cortisol 과소측정 가능</li>
+        </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 저용량 자극검사 -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q5</span> 저용량(1 μg) 코르티코트로핀 검사</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <ul class="rec-list">
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">2.2</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text">저용량(1 μg) 코르티코트로핀 검사는 <strong>물질 부족 시에만</strong> PAI 진단에 사용한다.</div>
+        </li>
+      </ul>
+      <p style="margin-top:8px">PAI에서 저용량과 표준 용량 간 진단 정확도 차이 없음. 1 μg 준비 시 희석 오류·오염 위험 존재. 이차성 부신기능부전에서는 저용량이 더 민감하다는 증거가 있으나 PAI에는 해당 없음.</p>
+    </div>
+  </div>
+
+  <!-- 기저 cortisol + ACTH -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q6</span> 기저 Cortisol + ACTH 측정</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <ul class="rec-list">
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">2.3</span><span class="grade grade-weak-vlow" data-tip="Weak recommendation, very low-quality evidence (2⊕○○○)">2/VLow</span></div>
+          <div class="rec-text">자극검사 불가 시에 한해: 오전(6–10시) cortisol <strong>≤140 nmol/L(5 μg/dL)</strong> + ACTH 상승 → PAI 예비 진단</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">2.4</span><span class="grade grade-strong-mod" data-tip="Strong recommendation, moderate-quality evidence (1⊕⊕⊕○)">1/Mod</span></div>
+          <div class="rec-text"><strong>혈장 ACTH 측정</strong> 권고. cortisol 결핍 확인 시 ACTH <strong>≥정상 상한 2배</strong> → PAI 합치</div>
+        </li>
+      </ul>
+      <table class="g-table" style="margin-top:8px">
+        <tr><th>기준치</th><th>의미</th></tr>
+        <tr><td>오전 cortisol <span class="dose dose-bad">≤140 nmol/L (5 μg/dL)</span></td><td>PAI 예비 진단 (ACTH 상승과 함께)</td></tr>
+        <tr><td>오전 cortisol <span class="dose dose-ok">≥480 nmol/L (17 μg/dL)</span></td><td>일부 연구: 부신기능부전 배제 기준 (논란 있음)</td></tr>
+        <tr><td>혈장 ACTH <span class="dose dose-bad">≥정상 상한 × 2배</span></td><td>PAI 진단에 합치</td></tr>
+        <tr><td>혈장 ACTH <span class="dose">≥66 pmol/L (300 ng/L)</span></td><td>코르티솔 합성에 최대 자극 수준</td></tr>
+      </table>
+      <div class="alert alert-warn" style="margin-top:6px">
+        <span>⚠️</span>
+        <div>기저 cortisol만으로 PAI 배제 불가. <strong>Random cortisol은 PAI 배제에 사용 불가.</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Renin / Aldosterone -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q7</span> Renin / Aldosterone 동시 측정</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <ul class="rec-list">
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">2.5</span><span class="grade grade-strong-mod" data-tip="Strong recommendation, moderate-quality evidence (1⊕⊕⊕○)">1/Mod</span></div>
+          <div class="rec-text">무기질코르티코이드 결핍 유무 판단을 위해 <strong>혈장 renin + aldosterone을 동시 측정</strong>할 것을 권고한다.</div>
+        </li>
+      </ul>
+      <p style="margin-top:8px">PAI 초기에 무기질코르티코이드 결핍이 먼저 나타날 수 있다. 혈장 renin 활성도/농도 상승 + aldosterone 정상 또는 저하 → PAI 시사.</p>
+      <div class="alert alert-info" style="margin-top:6px">
+        <span>ℹ️</span>
+        <div>예외: 가족성 글루코코르티코이드 결핍이나 경증 CAH 돌연변이에서는 무기질코르티코이드 생성이 유지될 수 있음.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ 치료 ═══════════════ -->
+<div id="tab-treatment" class="panel">
+
+  <div class="alert alert-info" style="margin-bottom:10px">
+    <span>📌</span>
+    <div>글루코코르티코이드 + 무기질코르티코이드 대체요법이 근간. 모니터링은 <strong>임상 평가 중심</strong>; 호르몬 수치(특히 ACTH) 기반 용량 조절은 과대 대체를 유발한다.</div>
+  </div>
+
+  <!-- 글루코코르티코이드 -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q8</span> 글루코코르티코이드 대체요법 (권고 3.1–3.6)</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <ul class="rec-list">
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.1</span><span class="grade grade-strong-high" data-tip="Strong recommendation, high-quality evidence (1⊕⊕⊕⊕)">1/High</span></div>
+          <div class="rec-text">확진된 모든 PAI에서 <strong>글루코코르티코이드 치료</strong>를 권고한다.</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.2</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text">Hydrocortisone <span class="dose dose-ok">15–25 mg/일</span> 또는 cortisone acetate <span class="dose">20–35 mg/일</span>을 <strong>2–3회 분복</strong>. 아침 기상 시 최대 용량, 점심(±이른 오후)에 나머지 투여.</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.3</span><span class="grade grade-weak-vlow" data-tip="Weak recommendation, very low-quality evidence (2⊕○○○)">2/VLow</span></div>
+          <div class="rec-text">순응도 저하 시 대안: prednisolone <span class="dose">3–5 mg/일</span> 1–2회 경구</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.4</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text"><span class="v-red">Dexamethasone은 PAI 치료에 권장하지 않는다</span> — 쿠싱 부작용 빈발, 용량 적정 어려움</div>
+        </li>
+      </ul>
+      <table class="g-table" style="margin-top:8px">
+        <tr><th>약제</th><th>일일 용량</th><th>투여 방법</th><th>비고</th></tr>
+        <tr><td><strong>Hydrocortisone</strong> <span class="pill pill-success">1차 선택</span></td><td class="cell-ok">15–25 mg/일</td><td>아침 기상 시 최대 용량<br>(예: 10–5–5 또는 10–5 mg)</td><td>반감기 ~90분; 2–4회 분복 생리적 리듬 유리</td></tr>
+        <tr><td><strong>Cortisone acetate</strong></td><td>20–35 mg/일</td><td>2–3회 분복</td><td>간 11β-HSD1 활성화 필요; 흡수 곡선 완만</td></tr>
+        <tr><td><strong>Prednisolone</strong> <span class="pill pill-warn">순응도 저하 시</span></td><td>3–5 mg/일</td><td>1–2회/일</td><td>장기지속; 대사 부작용 (체중증가, 이상지질혈증, 당뇨) 주의</td></tr>
+        <tr><td><strong>Dexamethasone</strong></td><td colspan="3" class="cell-bad">❌ PAI에 비권고 — 쿠싱 부작용 빈발, 무기질코르티코이드 활성 없음</td></tr>
+      </table>
+      <div class="alert alert-warn" style="margin-top:8px">
+        <span>⚠️</span>
+        <div><strong>모니터링 원칙 (권고 3.5–3.6):</strong>
+        <ul class="blist" style="margin-top:4px">
+          <li><strong>과대 대체</strong>: 체중증가, 불면증, 말초부종</li>
+          <li><strong>과소 대체</strong>: 오심, 식욕부진, 체중감소, 기력저하, 색소침착 악화</li>
+          <li><span class="v-red">혈장 ACTH 기반 용량 조절 비권고</span> — 대체요법 중 ACTH 상승은 정상 현상; 사용 시 과대 대체로 이어짐</li>
+          <li>흡수 장애 의심 시: 혈청 또는 타액 cortisol day curve 유용</li>
+        </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 무기질코르티코이드 -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q9</span> 무기질코르티코이드 대체요법 (권고 3.7–3.10)</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <ul class="rec-list">
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.7</span><span class="grade grade-strong-high" data-tip="Strong recommendation, high-quality evidence (1⊕⊕⊕⊕)">1/High</span></div>
+          <div class="rec-text">확인된 aldosterone 결핍 환자 전원에서 fludrocortisone(시작 용량 <span class="dose dose-ok">50–100 μg/일</span>) 투여 권고. <strong>염분 섭취 제한 금지.</strong></div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.8</span><span class="grade grade-strong-mod" data-tip="Strong recommendation, moderate-quality evidence (1⊕⊕⊕○)">1/Mod</span></div>
+          <div class="rec-text">무기질코르티코이드 모니터링: 임상 평가(염분 갈망, 기립성 저혈압, 부종) + 혈청 Na⁺, K⁺</div>
+        </li>
+      </ul>
+      <table class="g-table" style="margin-top:8px">
+        <tr><th>항목</th><th>내용</th></tr>
+        <tr><td>성인 유지 용량</td><td><span class="dose">50–200 μg/일</span> (일반적으로 0.1 mg/일), 아침 1회</td></tr>
+        <tr><td>소아 용량</td><td><span class="dose">100 μg/일</span> (체표면적 조절 불필요)</td></tr>
+        <tr><td>고온/발한 시</td><td>용량 50–100% 임시 증량 또는 염분 섭취 증가</td></tr>
+        <tr><td>Renin 모니터링</td><td>혈장 renin 활성도 <strong>정상 상한 또는 약간 상승</strong> → 적절한 용량 지표</td></tr>
+      </table>
+      <div class="alert alert-danger" style="margin-top:8px">
+        <span>⚠️</span>
+        <div><strong>고혈압 발생 시 (권고 3.9–3.10):</strong> fludrocortisone 감량 우선 → 조절 불충분 시 항고혈압제 추가 (ACEi/ARB 선호; 2차: 이수화피리딘 CCB). <br>
+        <span class="v-red">이뇨제·스피로노락톤·에플레레논 금기.</span><br>
+        감초(licorice), 자몽주스 → hydrocortisone의 MC 효과 강화 → 피할 것. Phenytoin → fludrocortisone 대사 가속 → 용량 증량 필요.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DHEA -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q10</span> DHEA 대체요법 (권고 3.11–3.13)</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <ul class="rec-list">
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.11–3.12</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text">GC·MC 최적화에도 <strong>성욕 저하·우울·에너지 저하 있는 PAI 여성</strong>에서 DHEA <span class="dose dose-ok">25–50 mg/일</span> 아침 1회, <strong>6개월</strong> 시험 투여 제안. 효과 없으면 중단.</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.13</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text">DHEA 복용 전 아침 DHEAS 측정; 폐경 전 여성 정상 범위 <strong>중간값</strong> 목표</div>
+        </li>
+      </ul>
+      <div class="alert alert-warn" style="margin-top:8px">
+        <span>⚠️</span>
+        <div>무작위 위약 대조 시험 메타분석에서 DHEA 치료의 QoL 개선에 대한 일관된 이점 없음 → 일상적 사용 근거 불충분. 개별 환자에서 성욕·기분·에너지 개선 효과 보고.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 임신 중 치료 -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q11</span> 임신 중 치료 (권고 3.14–3.17)</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <ul class="rec-list">
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.14–3.15</span><span class="grade grade-bp" data-tip="Ungraded best practice statement">BP</span></div>
+          <div class="rec-text">분기마다 최소 1회 과대/과소 대체 임상 평가. 개별 경과에 따라 hydrocortisone 증량 (24주 이후 통상 20–40% 증량).</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.16</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text">임신 중 <strong>hydrocortisone 우선 선택</strong>. <span class="v-red">Dexamethasone은 금기</span> (태반 11β-HSD2에 의해 불활성화되지 않아 태아로 이행).</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.17</span><span class="grade grade-strong-low" data-tip="Strong recommendation, low-quality evidence (1⊕⊕○○)">1/Low</span></div>
+          <div class="rec-text">활성 진통 단계에서 대수술에 준하는 <strong>hydrocortisone stress dosing</strong> 권고.</div>
+        </li>
+      </ul>
+      <div class="alert alert-danger" style="margin-top:8px">
+        <span>🚨</span>
+        <div><strong>분만 프로토콜:</strong><br>
+        시작 기준: 자궁경부 개대 ≥4 cm 또는 5분 간격 규칙 진통 1시간<br>
+        <span class="dose dose-ok">Hydrocortisone 100 mg IV bolus</span> → <span class="dose dose-ok">200 mg/24h 지속 IV</span><br>
+        분만 후 → 산전 용량으로 빠르게 감량</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 소아 -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q12</span> 소아 치료 (권고 3.18–3.21)</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <ul class="rec-list">
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.18–3.19</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text">Hydrocortisone <span class="dose dose-ok">8 mg/m²/일</span> <strong>3–4회 분복</strong>. 합성 장기지속 GC(prednisolone, dexamethasone) 회피.</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">3.21</span><span class="grade grade-strong-low" data-tip="Strong recommendation, low-quality evidence (1⊕⊕○○)">1/Low</span></div>
+          <div class="rec-text">Fludrocortisone <span class="dose">100 μg/일</span>. 영아: NaCl <span class="dose">1–2 g/일</span> 분할 수유 (신생아~12개월).</div>
+        </li>
+      </ul>
+      <table class="g-table" style="margin-top:8px">
+        <tr><th>항목</th><th>내용</th></tr>
+        <tr><td>GC 과대 치료 신호</td><td>체중 과증가 + 신장 속도 저하. CAH에서 20 mg/m²/일(영아) 또는 15–17 mg/m²/일(청소년) 초과 시 성장 장애</td></tr>
+        <tr><td>Fludrocortisone</td><td>100 μg/일 (체표면적 조절 불필요; 전 생애 동일 용량 경향)</td></tr>
+        <tr><td>영아 NaCl</td><td>1–2 g/일 (17–34 mmol/일), 분할 수유; 신장의 MC 저항성 + 분유·모유의 낮은 Na 함량 때문</td></tr>
+        <tr><td>추적 간격</td><td>영아: 최소 3–4개월마다; 이후 연 1회</td></tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ 부신위기 ═══════════════ -->
+<div id="tab-crisis" class="panel">
+
+  <div class="alert alert-danger" style="margin-bottom:10px">
+    <span>🚨</span>
+    <div><strong>부신위기는 의학적 응급상황이다!</strong> PAI 환자에서 연간 6.6–8.3건/100 환자·년 발생. 사망률 0.5/100 환자·년. 전체 환자의 약 1/12이 매년 생명 위협적 위기를 경험한다. 주요 유발 요인: 위장관 질환(32.6%), 기타 감염(24.3%).</div>
+  </div>
+
+  <!-- 부신위기 치료 -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q13</span> 부신위기 즉각 치료 (권고 4.1–4.2)</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <ul class="rec-list">
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">4.1</span><span class="grade grade-strong-mod" data-tip="Strong recommendation, moderate-quality evidence (1⊕⊕⊕○)">1/Mod</span></div>
+          <div class="rec-text">부신위기 의심 → 즉시 <strong>hydrocortisone 100 mg(소아 50 mg/m²) IV 주사</strong>, 이후 수액 소생 + <strong>hydrocortisone 200 mg(소아 50–100 mg/m²)/24h</strong> 지속 IV 또는 6시간마다 주사.</div>
+        </li>
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">4.2</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text">HC 없을 시 prednisolone 대체. <strong>Dexamethasone은 최후 수단</strong>으로만 사용 (무기질코르티코이드 활성 없음).</div>
+        </li>
+      </ul>
+
+      <div class="grid2" style="margin-top:8px;gap:8px">
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--text2);margin-bottom:4px;text-transform:uppercase">성인 부신위기 프로토콜</div>
+          <ol class="nlist">
+            <li>즉시: <span class="dose dose-ok">Hydrocortisone 100 mg IV bolus</span></li>
+            <li>수액: <span class="dose dose-ok">생리식염수 1,000 mL IV</span> 첫 1시간 이내</li>
+            <li>지속: <span class="dose dose-ok">HC 200 mg/24h 지속 IV</span> (또는 50 mg q6h)</li>
+            <li>다음 날: <span class="dose">HC 100 mg/24h</span>로 감량</li>
+            <li>호전 시 경구 전환 후 신속 감량</li>
+            <li>저혈당 시: <span class="dose">Dextrose 0.5–1 g/kg IV</span></li>
+          </ol>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--text2);margin-bottom:4px;text-transform:uppercase">소아 부신위기 프로토콜</div>
+          <ol class="nlist">
+            <li><span class="dose">생리식염수 20 mL/kg IV bolus</span>; 쇼크 시 최대 60 mL/kg 1h 이내</li>
+            <li><span class="dose dose-ok">HC 50–100 mg/m² IV bolus</span></li>
+            <li><span class="dose">HC 50–100 mg/m²/일</span> q6h</li>
+            <li>저혈당(12세 미만): <span class="dose">D10W 5–10 mL/kg IV</span></li>
+          </ol>
+        </div>
+      </div>
+      <div class="alert alert-info" style="margin-top:8px">
+        <span>ℹ️</span>
+        <div>HC ≥50 mg/24h 투여 시 충분한 무기질코르티코이드 활성 → fludrocortisone 추가 불필요.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 상황별 프로토콜 -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q14</span> 상황별 스테로이드 조절 프로토콜 (Table 3)</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <table class="g-table">
+        <tr><th>상황</th><th>권장 처치 (성인 기준)</th></tr>
+        <tr>
+          <td style="font-weight:600">발열 동반 가정 내 질병</td>
+          <td><span class="dose">38°C: 경구 HC 2배 증량</span>&nbsp;<span class="dose dose-warn">39°C: 3배 증량</span><br>회복 시까지 (통상 2–3일); 전해질 수분 충분 섭취</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600">경구 복약 불가<br>(위장염, 외상)</td>
+          <td><span class="dose dose-ok">HC 100 mg IM 또는 SC</span><br>소아: 50 mg/m² IM (영아 25 mg / 학령기 50 mg / 청소년 100 mg)</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600">경~중등도 수술 스트레스</td>
+          <td><span class="dose">HC 25–75 mg/24h</span> (통상 1–2일)<br>소아: 50 mg/m² IM 또는 경구 2–3배</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600">대수술 / 전신마취 / 외상 / 분만 / 중환자</td>
+          <td><span class="dose dose-ok">HC 100 mg IV bolus</span> → <span class="dose dose-ok">200 mg/24h 지속 IV</span> (또는 50 mg q6h)<br>5% 포도당 수액 병용; 호전 시 경구 전환 후 신속 감량<br>소아: <span class="dose">50 mg/m² IV bolus</span> → 50–100 mg/m²/일 q6h</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 예방 교육 -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q15</span> 부신위기 예방 — 환자 교육 및 조치 (권고 4.3–4.6 / Table 4)</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <table class="g-table">
+        <tr><th>조치 항목</th><th>내용</th></tr>
+        <tr><td><strong>스테로이드 응급카드</strong></td><td>"부신기능부전 — 스테로이드 필요!" (국문/영문 양면)</td></tr>
+        <tr><td><strong>의료경보 팔찌/목걸이</strong></td><td>"Adrenal insufficiency – needs steroids!"</td></tr>
+        <tr><td><strong>Sick day rule 1</strong></td><td>발열·안정 필요 질병·항생제 처방 감염·소외래 시술(치과 등) → 경구 GC <strong>2배 증량</strong></td></tr>
+        <tr><td><strong>Sick day rule 2</strong></td><td>중증 질환·외상·지속 구토·시술 전 금식(대장내시경 포함!)·수술 → GC <strong>IM/IV 주사</strong></td></tr>
+        <tr><td><strong>응급 주사 키트</strong></td><td>HC 100 mg 바이알 + 주사기·바늘; 또는 prednisolone 좌약 100 mg</td></tr>
+        <tr><td><strong>응급 연락처</strong></td><td>내분비 전문의 팀 응급 연락처 제공</td></tr>
+        <tr><td><strong>교육 반복</strong></td><td>매 외래 추적 시 이해도 확인 및 재교육 (최소 연 1회)</td></tr>
+      </table>
+      <div class="alert alert-warn" style="margin-top:8px">
+        <span>⚠️</span>
+        <div><strong>현실적 문제:</strong> 연구에서 환자 <span class="v-red">46%</span>가 신체적 스트레스 시 스테로이드 관리에 미숙. 부신위기 발생 시 의료진 직접 주사 의존 비율 <span class="v-red">66% 이상</span>. 자가 주사 시행 비율 <span class="v-red">12%</span>에 불과.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 약물 상호작용 -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q16</span> 부신위기 유발 가능 약물 상호작용</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <table class="g-table">
+        <tr><th>약물/상황</th><th>기전</th><th>조치</th></tr>
+        <tr><td>Levothyroxine(T4) 시작</td><td>코르티솔 대사 가속 (11β-HSD2 자극)</td><td>GC 용량 증량, 재평가</td></tr>
+        <tr><td>Carbamazepine, Mitotane, St. John's wort</td><td>CYP3A4 유도 → 코르티솔 청소율 증가</td><td>HC 용량 증량 필요</td></tr>
+        <tr><td>Rifampicin, Phenytoin, Phenobarbital</td><td>코르티솔 대사 가속</td><td>GC 용량 증량 필요</td></tr>
+        <tr><td>항응고제</td><td>부신 출혈 위험</td><td>PAI 발생 가능성 인식</td></tr>
+        <tr><td>면역관문억제제 (CTLA-4i, PD-1i)</td><td>자가면역 부신염 유발</td><td>발생 시 즉각 GC 치료</td></tr>
+        <tr><td>Dexamethasone 단독 (fludrocortisone 없이)</td><td>무기질코르티코이드 활성 전무</td><td><span class="v-red">반드시 fludrocortisone 병용</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ 모니터링 ═══════════════ -->
+<div id="tab-monitoring" class="panel">
+
+  <div class="alert alert-info" style="margin-bottom:10px">
+    <span>📌</span>
+    <div>치료 목표: 정상 체중, 정상 혈압, 안정적 에너지 수준, 정상 직업 활동, HRQoL 회복. 장기적 HRQoL은 진단 지연 기간에 반비례한다.</div>
+  </div>
+
+  <!-- 추적 주기 -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q17</span> 추적 주기 및 평가 항목 (권고 5.1–5.2)</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <table class="g-table">
+        <tr><th>평가 항목</th><th>내용</th><th>주기</th></tr>
+        <tr><td><strong>임상 평가</strong></td><td>피부색소침착, 혈압(기립성 포함), 체중, 에너지 수준, 직업 능력, HRQoL, 부신위기 이력</td><td>연 1회 이상</td></tr>
+        <tr><td><strong>혈청 Na⁺, K⁺</strong></td><td>기본 전해질</td><td>연 1회 이상</td></tr>
+        <tr><td><strong>TSH, free T4</strong></td><td>자가면역 갑상선질환 선별</td><td>연 1회</td></tr>
+        <tr><td><strong>HbA1c</strong></td><td>T1DM 선별</td><td>연 1회</td></tr>
+        <tr><td><strong>혈장 renin 활성도</strong></td><td>fludrocortisone 용량 모니터링 → 정상 상한 또는 약간 상승 목표</td><td>상태 변화 시</td></tr>
+        <tr><td><strong>비타민 B12</strong></td><td>자가면역 위염 동반 선별</td><td>연 1회 가능</td></tr>
+        <tr><td><strong>조직 tTG-2 Ab + IgA</strong></td><td>복강병 선별 (~5% 유병률)</td><td>간헐적 (증상 없어도)</td></tr>
+        <tr><td><strong>소아 추가</strong></td><td>성장 속도, 혈압, 전반적 건강 상태</td><td>영아 3–4개월마다 / 이후 연 1회</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 동반 자가면역 질환 -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q18</span> 동반 자가면역 질환 선별 (권고 5.3)</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <ul class="rec-list">
+        <li class="rec-item">
+          <div class="rec-badges"><span class="rec-num">5.3</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
+          <div class="rec-text">자가면역 원인 PAI에서 관련 자가면역 질환을 주기적(연 1회 가능)으로 선별한다.</div>
+        </li>
+      </ul>
+      <table class="g-table" style="margin-top:8px">
+        <tr><th>동반 질환</th><th>유병률</th><th>선별 방법</th></tr>
+        <tr><td><strong>자가면역 갑상선질환</strong></td><td><span class="v-red">여성 50%, 남성 25%</span></td><td>TSH, free T4</td></tr>
+        <tr><td><strong>제1형 당뇨병</strong></td><td>스칸디나비아 10–15%, 기타 지역 낮음</td><td>HbA1c</td></tr>
+        <tr><td><strong>조기 난소부전</strong></td><td>여성 8–40% (APS 유형에 따라)</td><td>월경 주기 문진; FSH</td></tr>
+        <tr><td><strong>복강병</strong></td><td>약 5%</td><td>조직 tTG-2 Ab + 총 IgA</td></tr>
+        <tr><td><strong>자가면역 위염 / 비타민 B12 결핍</strong></td><td>흔함</td><td>비타민 B12; 의심 시 holotranscobalamin, homocysteine, MMA, 벽세포/내인자 Ab</td></tr>
+        <tr><td><strong>백반증, 원형탈모</strong></td><td>흔한 자가면역 표지자</td><td>피부 진찰</td></tr>
+      </table>
+      <div class="alert alert-purple" style="margin-top:8px">
+        <span>🔬</span>
+        <div><strong>조기 난소부전 특이 사항:</strong> 진단 후에도 수년간 난포 기능이 유지될 수 있어 난소 조직 동결 보존이 실험적으로 고려 가능.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 미래 연구 방향 -->
+  <div class="acc">
+    <div class="acc-hdr" onclick="toggleAcc(this)">
+      <span style="display:flex;align-items:center;gap:8px"><span class="q-label">Q19</span> HRQoL 및 미래 연구 방향</span>
+      <span class="acc-arrow">▸</span>
+    </div>
+    <div class="acc-body">
+      <p style="margin-bottom:6px">표준 스테로이드 대체요법으로 치료받는 Addison 병 환자에서도 HRQoL이 감소되어 있다. 장기적 HRQoL은 진단 지연 기간에 반비례한다.</p>
+      <div class="grid2" style="gap:8px">
+        <div>
+          <div style="font-size:11px;font-weight:700;margin-bottom:4px;color:var(--text2)">진단 분야</div>
+          <ul class="blist">
+            <li><strong>LC-MS/MS</strong>: 특이적 cortisol 측정; 단일 분석에서 다수 스테로이드 동시 정량</li>
+            <li><strong>타액 cortisol</strong>: biomarker로서 가능성 조사 중</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;margin-bottom:4px;color:var(--text2)">치료 분야</div>
+          <ul class="blist">
+            <li><strong>변형/이중 방출 hydrocortisone (Plenadren 등)</strong>: 일중 리듬 재현</li>
+            <li><strong>연속 피하 HC 주입</strong>: 인슐린 펌프 활용; 개방 교차 연구에서 HRQoL 개선</li>
+            <li><strong>리툭시맙/depot ACTH</strong>: 자가면역 PAI에서 코르티솔 생산 회복 가능성</li>
+            <li><strong>유전자 치료/세포 이식</strong>: 단일유전자 PAI에서 실험적</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════ 약어집 ═══════════════ -->
+<div id="tab-abbr" class="panel">
+  <div class="alert alert-info" style="margin-bottom:10px">
+    <span>📌</span>
+    <div>상단 검색창 또는 아래 목록에서 약어를 검색하세요.</div>
+  </div>
+  <div id="abbr-main-grid" class="abbr-grid"></div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+// ── Tab switching ──
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t => {
+    if (t.getAttribute('onclick') === "showTab('" + id + "')") t.classList.add('active');
+  });
+}
+
+// ── Card toggle ──
+function toggleCard(hdr) {
+  hdr.classList.toggle('open');
+  const body = hdr.nextElementSibling;
+  body.classList.toggle('collapsed');
+}
+
+// ── Accordion toggle ──
+function toggleAcc(hdr) {
+  hdr.classList.toggle('open');
+  const body = hdr.nextElementSibling;
+  body.style.display = body.style.display === 'block' ? 'none' : 'block';
+}
+
+// ── Abbreviations ──
+const ABBR = [
+  ['11β-HSD1','11β-하이드록시스테로이드 탈수소효소 1형 (Hydroxysteroid dehydrogenase type 1)'],
+  ['11β-HSD2','11β-하이드록시스테로이드 탈수소효소 2형 (Hydroxysteroid dehydrogenase type 2)'],
+  ['17-OHP','17-하이드록시프로게스테론 (17-Hydroxyprogesterone)'],
+  ['ACTH','부신피질자극호르몬 (Adrenocorticotropic hormone)'],
+  ['AHC','선천성 부신 저형성증 (Adrenal hypoplasia congenita)'],
+  ['ALD','부신백질이영양증 (Adrenoleukodystrophy)'],
+  ['APECED','자가면역다내분비병증-칸디다증-외배엽이영양증 (APECED; APS-1)'],
+  ['APS','자가면역다내분비 증후군 (Autoimmune polyendocrine syndrome)'],
+  ['ARB','안지오텐신 수용체 차단제 (Angiotensin receptor blocker)'],
+  ['CAH','선천성 부신과형성 (Congenital adrenal hyperplasia)'],
+  ['CBG','코르티솔 결합 글로불린 (Cortisol-binding globulin)'],
+  ['CMV','사이토메갈로바이러스 (Cytomegalovirus)'],
+  ['CTLA-4i','CTLA-4 억제제 (면역관문억제제; ipilimumab 등)'],
+  ['CYP21A2','21-수산화효소 유전자 (Cytochrome P450 21A2)'],
+  ['CYP3A4','사이토크롬 P450 3A4 (주요 약물 대사 효소)'],
+  ['DHEA','디하이드로에피안드로스테론 (Dehydroepiandrosterone)'],
+  ['DHEAS','DHEA 황산염 (DHEA sulfate)'],
+  ['ESE','유럽 내분비학회 (European Society of Endocrinology)'],
+  ['GC','글루코코르티코이드 (Glucocorticoid)'],
+  ['HC','하이드로코르티손 (Hydrocortisone)'],
+  ['HPA축','시상하부-뇌하수체-부신 축 (Hypothalamic-pituitary-adrenal axis)'],
+  ['HRQoL','건강 관련 삶의 질 (Health-related quality of life)'],
+  ['IM','근육 내 (Intramuscular)'],
+  ['IV','정맥 내 (Intravenous)'],
+  ['LC-MS/MS','액체 크로마토그래피/탠덤 질량분석 (Liquid chromatography/tandem mass spectrometry)'],
+  ['MC','무기질코르티코이드 (Mineralocorticoid)'],
+  ['MC2R','멜라노코르틴 2 수용체 유전자 (Melanocortin 2 receptor gene)'],
+  ['MMA','메틸말론산 (Methylmalonic acid)'],
+  ['MRAP','멜라노코르틴 수용체 부속 단백질 (Melanocortin receptor accessory protein)'],
+  ['PAI','원발성 부신기능부전 (Primary adrenal insufficiency)'],
+  ['PD-1i','PD-1 억제제 (면역관문억제제; pembrolizumab 등)'],
+  ['POMC','프로-오피오멜라노코르틴 (Pro-opiomelanocortin)'],
+  ['PRA','혈장 레닌 활성도 (Plasma renin activity)'],
+  ['SC','피하 (Subcutaneous)'],
+  ['StAR','스테로이드 생성 급성 조절 단백질 (Steroidogenic acute regulatory protein)'],
+  ['T1DM','제1형 당뇨병 (Type 1 diabetes mellitus)'],
+  ['T4','티록신 (Thyroxine / Levothyroxine)'],
+  ['TSH','갑상선 자극 호르몬 (Thyroid-stimulating hormone)'],
+  ['tTG-2 Ab','조직 트랜스글루타미나아제-2 항체 (복강병 선별 항체)'],
+  ['VLCFA','초장쇄 지방산 (Very long chain fatty acids)'],
+  ['X-ALD','X-연관 부신백질이영양증 (X-linked adrenoleukodystrophy)'],
+];
+
+function renderAbbrGrid(el, data) {
+  el.innerHTML = data.map(([k,v]) =>
+    `<div class="abbr-item"><div class="abbr-term">${k}</div><div class="abbr-def">${v}</div></div>`
+  ).join('');
+}
+
+// Initial render in tab
+renderAbbrGrid(document.getElementById('abbr-main-grid'), ABBR);
+
+// Search / dropdown
+function filterAbbr(q) {
+  q = q.trim().toLowerCase();
+  const inp = document.getElementById('abbr-input');
+  const drop = document.getElementById('abbr-dropdown');
+  const grid = document.getElementById('abbr-grid-drop');
+  const cnt  = document.getElementById('abbr-count');
+
+  if (!q) { drop.style.display = 'none'; cnt.textContent = ''; return; }
+  const res = ABBR.filter(([k,v]) => k.toLowerCase().includes(q) || v.toLowerCase().includes(q));
+  cnt.textContent = res.length ? res.length + '건' : '';
+  if (!res.length) { drop.style.display = 'none'; return; }
+  renderAbbrGrid(grid, res);
+  // Position below input
+  const rect = inp.getBoundingClientRect();
+  drop.style.top  = (rect.bottom + 4) + 'px';
+  drop.style.left = Math.max(4, rect.right - 460) + 'px';
+  drop.style.display = 'block';
+}
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.tab-abbr-wrap')) {
+    document.getElementById('abbr-dropdown').style.display = 'none';
+    document.getElementById('abbr-count').textContent = '';
+    document.getElementById('abbr-input').value = '';
+  }
+});
+</script>
+</body>
+</html>
