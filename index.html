@@ -19,13 +19,14 @@
     --text: #1f2328;
     --text2: #57606a;
     --adrenal: #7c3aed;
+    --fscale: 1;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Pretendard', 'Noto Sans KR', -apple-system, sans-serif;
     background: var(--bg);
     color: var(--text);
-    font-size: 13px;
+    font-size: calc(13px * var(--fscale, 1));
     line-height: 1.5;
     min-height: 100vh;
   }
@@ -46,15 +47,15 @@
   .logo-badge {
     background: #7c3aed;
     color: #fff;
-    font-size: 10px;
+    font-size: calc(10px * var(--fscale, 1));
     font-weight: 700;
     padding: 3px 8px;
     border-radius: 4px;
     letter-spacing: 0.5px;
   }
   header h1 { font-size: 18px; font-weight: 700; color: var(--text); }
-  .meta { color: var(--text2); font-size: 11px; }
-  .source-link { color: var(--accent2); font-size: 11px; text-decoration: none; }
+  .meta { color: var(--text2); font-size: calc(11px * var(--fscale, 1)); }
+  .source-link { color: var(--accent2); font-size: calc(11px * var(--fscale, 1)); text-decoration: none; }
   .source-link:hover { text-decoration: underline; }
 
   /* ── TABS ── */
@@ -71,10 +72,19 @@
     z-index: 99;
   }
   .tab-bar::-webkit-scrollbar { display: none; }
+  .font-zoom-btn {
+    display: flex; align-items: center; gap: 3px; flex-shrink: 0;
+    margin: 4px 4px 4px 6px; padding: 5px 10px;
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
+    color: var(--accent2); font-size: calc(11px * var(--fscale, 1)); font-weight: 700;
+    cursor: pointer; user-select: none; white-space: nowrap; transition: background .15s;
+  }
+  .font-zoom-btn:hover { background: var(--border); }
+  .font-zoom-btn .fz-icon { font-size: calc(12px * var(--fscale, 1)); }
   .tab-bar-inner { width: 100%; max-width: 960px; display: flex; align-items: center; gap: 2px; padding: 0 8px; }
   .tab {
     padding: 8px 12px;
-    font-size: 12px;
+    font-size: calc(12px * var(--fscale, 1));
     color: var(--text2);
     cursor: pointer;
     border-bottom: 2px solid transparent;
@@ -108,7 +118,7 @@
   .card-header {
     background: var(--surface2);
     padding: 8px 12px;
-    font-size: 12px;
+    font-size: calc(12px * var(--fscale, 1));
     font-weight: 600;
     color: var(--text2);
     text-transform: uppercase;
@@ -121,7 +131,7 @@
     user-select: none;
   }
   .card-header .ch-title { display: flex; align-items: center; gap: 8px; }
-  .card-header .toggle { font-size: 14px; transition: transform .2s; }
+  .card-header .toggle { font-size: calc(14px * var(--fscale, 1)); transition: transform .2s; }
   .card-header.open .toggle { transform: rotate(180deg); }
   .card-body { padding: 10px 12px; }
   .card-body.collapsed { display: none; }
@@ -129,11 +139,11 @@
   /* ── STAT ── */
   .stat-row { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
   .stat-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 10px 14px; flex: 1; text-align: center; min-width: 90px; }
-  .stat-val { font-size: 18px; font-weight: 700; color: var(--accent2); }
-  .stat-lbl { font-size: 10px; color: var(--text2); margin-top: 2px; line-height: 1.4; }
+  .stat-val { font-size: calc(18px * var(--fscale, 1)); font-weight: 700; color: var(--accent2); }
+  .stat-lbl { font-size: calc(10px * var(--fscale, 1)); color: var(--text2); margin-top: 2px; line-height: 1.4; }
 
   /* ── GRADE BADGES ── */
-  .grade { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 700; white-space: nowrap; position: relative; cursor: help; }
+  .grade { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: calc(10px * var(--fscale, 1)); font-weight: 700; white-space: nowrap; position: relative; cursor: help; }
   .grade-strong-high { background: #dafbe1; color: #116329; border: 1px solid #1a7f37; }
   .grade-strong-mod  { background: #dafbe1; color: #116329; border: 1px solid #57606a; }
   .grade-strong-low  { background: #fff8c5; color: #7d4e00; border: 1px solid #9a6700; }
@@ -152,7 +162,7 @@
     transform: translateX(-50%);
     background: #1f2328;
     color: #e6edf3;
-    font-size: 11px;
+    font-size: calc(11px * var(--fscale, 1));
     font-weight: 400;
     line-height: 1.5;
     padding: 6px 10px;
@@ -181,12 +191,12 @@
   .rec-item { padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-start; }
   .rec-item:last-child { border-bottom: none; }
   .rec-badges { display: flex; gap: 4px; flex-shrink: 0; margin-top: 2px; flex-wrap: nowrap; }
-  .rec-num { font-size: 10px; font-weight: 700; color: var(--adrenal); background: #f0e8ff; border: 1px solid #c4b0e8; border-radius: 3px; padding: 1px 5px; flex-shrink: 0; margin-top: 2px; }
-  .rec-text { font-size: 12px; color: var(--text); line-height: 1.55; }
+  .rec-num { font-size: calc(10px * var(--fscale, 1)); font-weight: 700; color: var(--adrenal); background: #f0e8ff; border: 1px solid #c4b0e8; border-radius: 3px; padding: 1px 5px; flex-shrink: 0; margin-top: 2px; }
+  .rec-text { font-size: calc(12px * var(--fscale, 1)); color: var(--text); line-height: 1.55; }
   .rec-text strong { color: var(--accent2); }
 
   /* ── ALERT ── */
-  .alert { padding: 8px 12px; border-radius: 6px; font-size: 12px; margin: 8px 0; display: flex; gap: 8px; align-items: flex-start; }
+  .alert { padding: 8px 12px; border-radius: 6px; font-size: calc(12px * var(--fscale, 1)); margin: 8px 0; display: flex; gap: 8px; align-items: flex-start; }
   .alert-danger  { background: #ffebe9; border-left: 3px solid var(--red);    color: #82071e; }
   .alert-info    { background: #ddf4ff; border-left: 3px solid var(--accent2); color: #0550ae; }
   .alert-warn    { background: #fff8c5; border-left: 3px solid var(--yellow); color: #7d4e00; }
@@ -194,8 +204,8 @@
   .alert-purple  { background: #f0e8ff; border-left: 3px solid #7c3aed;       color: #4c1d95; }
 
   /* ── TABLE ── */
-  .g-table { width: 100%; border-collapse: collapse; font-size: 11px; margin: 6px 0; }
-  .g-table th { background: var(--surface2); color: var(--text2); padding: 6px 8px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.3px; font-weight: 600; text-align: left; border-bottom: 1px solid var(--border); }
+  .g-table { width: 100%; border-collapse: collapse; font-size: calc(11px * var(--fscale, 1)); margin: 6px 0; }
+  .g-table th { background: var(--surface2); color: var(--text2); padding: 6px 8px; font-size: calc(10px * var(--fscale, 1)); text-transform: uppercase; letter-spacing: 0.3px; font-weight: 600; text-align: left; border-bottom: 1px solid var(--border); }
   .g-table td { padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
   .g-table tr:last-child td { border-bottom: none; }
   .g-table tr:hover td { background: rgba(0,0,0,0.02); }
@@ -203,27 +213,27 @@
 
   /* ── ACCORDION ── */
   .acc { border: 1px solid var(--border); border-radius: 6px; margin-bottom: 6px; overflow: hidden; }
-  .acc-hdr { background: var(--surface2); padding: 8px 12px; font-size: 12px; font-weight: 600; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+  .acc-hdr { background: var(--surface2); padding: 8px 12px; font-size: calc(12px * var(--fscale, 1)); font-weight: 600; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
   .acc-hdr:hover { background: #e5e9ef; }
-  .acc-hdr .acc-arrow { font-size: 11px; color: var(--text2); transition: transform .2s; }
+  .acc-hdr .acc-arrow { font-size: calc(11px * var(--fscale, 1)); color: var(--text2); transition: transform .2s; }
   .acc-hdr.open .acc-arrow { transform: rotate(90deg); }
-  .acc-body { display: none; padding: 10px 12px; font-size: 12px; line-height: 1.6; }
+  .acc-body { display: none; padding: 10px 12px; font-size: calc(12px * var(--fscale, 1)); line-height: 1.6; }
   .acc-body p { margin-bottom: 6px; }
   .acc-body p:last-child { margin-bottom: 0; }
 
   /* ── SECTION LABEL ── */
-  .q-label { display: inline-block; background: #7c3aed; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 3px; margin-right: 6px; flex-shrink: 0; }
-  .sec-label { display: inline-block; background: #0550ae; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 3px; margin-right: 6px; }
+  .q-label { display: inline-block; background: #7c3aed; color: #fff; font-size: calc(10px * var(--fscale, 1)); font-weight: 700; padding: 2px 7px; border-radius: 3px; margin-right: 6px; flex-shrink: 0; }
+  .sec-label { display: inline-block; background: #0550ae; color: #fff; font-size: calc(10px * var(--fscale, 1)); font-weight: 700; padding: 2px 7px; border-radius: 3px; margin-right: 6px; }
 
   /* ── PILL ── */
-  .pill { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: 10px; font-weight: 600; white-space: nowrap; }
+  .pill { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: calc(10px * var(--fscale, 1)); font-weight: 600; white-space: nowrap; }
   .pill-danger  { background: #ffebe9; color: var(--red); }
   .pill-warn    { background: #fff8c5; color: var(--yellow); }
   .pill-info    { background: #ddf4ff; color: var(--accent2); }
   .pill-success { background: #dafbe1; color: var(--green); }
 
   /* ── DOSE TAG ── */
-  .dose { display: inline-block; background: #ddf4ff; color: #0550ae; border-radius: 3px; padding: 1px 7px; font-size: 11px; font-weight: 700; margin: 1px 2px; }
+  .dose { display: inline-block; background: #ddf4ff; color: #0550ae; border-radius: 3px; padding: 1px 7px; font-size: calc(11px * var(--fscale, 1)); font-weight: 700; margin: 1px 2px; }
   .dose-ok   { background: #dafbe1; color: #116329; }
   .dose-warn { background: #fff8c5; color: #9a6700; }
   .dose-bad  { background: #ffebe9; color: #cf222e; }
@@ -231,15 +241,15 @@
   /* ── ABBR ── */
   .abbr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 6px; }
   .abbr-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; padding: 6px 10px; display: flex; flex-direction: column; gap: 2px; }
-  .abbr-term { font-weight: 700; color: var(--accent2); font-size: 12px; font-family: 'Courier New', monospace; white-space: nowrap; }
-  .abbr-def  { font-size: 11px; color: var(--text2); line-height: 1.45; }
+  .abbr-term { font-weight: 700; color: var(--accent2); font-size: calc(12px * var(--fscale, 1)); font-family: 'Courier New', monospace; white-space: nowrap; }
+  .abbr-def  { font-size: calc(11px * var(--fscale, 1)); color: var(--text2); line-height: 1.45; }
 
   /* ── SCROLLBAR ── */
   ::-webkit-scrollbar { width: 5px; height: 5px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: #c8d0d9; border-radius: 3px; }
 
-  small { color: var(--text2); font-size: 10px; }
+  small { color: var(--text2); font-size: calc(10px * var(--fscale, 1)); }
   .sec-sep { height: 1px; background: var(--border); margin: 10px 0; }
 
   .v-red    { color: var(--red); font-weight: 700; }
@@ -254,10 +264,10 @@
   .cell-info { background: #ddf4ff; color: #0550ae; font-weight: 600; text-align: center; }
 
   ul.blist { list-style: none; padding: 0; }
-  ul.blist li { padding: 3px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+  ul.blist li { padding: 3px 0; border-bottom: 1px solid var(--border); font-size: calc(12px * var(--fscale, 1)); }
   ul.blist li:last-child { border-bottom: none; }
   ol.nlist { padding-left: 18px; }
-  ol.nlist li { font-size: 12px; padding: 2px 0; }
+  ol.nlist li { font-size: calc(12px * var(--fscale, 1)); padding: 2px 0; }
 </style>
 </head>
 <body>
@@ -271,13 +281,14 @@
     <div style="text-align:center;margin-top:3px;line-height:1.5">
       <a href="https://doi.org/10.1210/jc.2015-1710" class="source-link" target="_blank">J Clin Endocrinol Metab 2016;101(2):364–389 ↗</a>
       <span class="meta"> · Bornstein SR et al. (chair) · 공동후원: ESE, AACC</span><br>
-      <span style="font-size:10px;color:var(--text2);font-style:italic">본 도구는 Endocrine Society 공식 승인 자료가 아닙니다</span>
+      <span style="font-size: calc(10px * var(--fscale, 1));color:var(--text2);font-style:italic">본 도구는 Endocrine Society 공식 승인 자료가 아닙니다</span>
     </div>
   </div>
 </header>
 
 <div class="tab-bar">
   <div class="tab-bar-inner">
+    <div id="font-zoom-btn" class="font-zoom-btn" onclick="cycleFontZoom()"><span class="fz-icon">🔠</span><span id="font-zoom-label">100%</span></div>
     <div class="tab active" onclick="showTab('overview')">🏠 개요</div>
     <div class="tab" onclick="showTab('diagnosis')">🔬 진단</div>
     <div class="tab" onclick="showTab('tests')">🧪 검사법</div>
@@ -287,11 +298,11 @@
     <div class="tab" onclick="showTab('abbr')">📖 약어집</div>
     <div class="tab-abbr-wrap">
       <div style="position:relative;display:flex;align-items:center;flex-shrink:0">
-        <span style="position:absolute;left:8px;color:var(--text2);font-size:12px;pointer-events:none">🔍</span>
+        <span style="position:absolute;left:8px;color:var(--text2);font-size: calc(12px * var(--fscale, 1));pointer-events:none">🔍</span>
         <input id="abbr-input" type="text" placeholder="약어 검색" oninput="filterAbbr(this.value)"
-          style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:4px 8px 4px 26px;color:var(--text);font-size:12px;width:120px;outline:none;"
+          style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:4px 8px 4px 26px;color:var(--text);font-size: calc(12px * var(--fscale, 1));width:120px;outline:none;"
           onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-        <span id="abbr-count" style="position:absolute;right:7px;font-size:10px;color:var(--text2);pointer-events:none"></span>
+        <span id="abbr-count" style="position:absolute;right:7px;font-size: calc(10px * var(--fscale, 1));color:var(--text2);pointer-events:none"></span>
       </div>
       <div id="abbr-dropdown" style="display:none;position:fixed;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px;width:460px;max-height:340px;overflow-y:auto;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,.12)">
         <div id="abbr-grid-drop" style="display:grid;grid-template-columns:1fr"></div>
@@ -331,7 +342,7 @@
       </div>
 
       <!-- Section 1 -->
-      <div style="font-size:11px;font-weight:700;color:var(--text2);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.5px">Section 1. 검사 대상 및 방법</div>
+      <div style="font-size: calc(11px * var(--fscale, 1));font-weight:700;color:var(--text2);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.5px">Section 1. 검사 대상 및 방법</div>
       <ul class="rec-list">
         <li class="rec-item">
           <div class="rec-badges"><span class="rec-num">1.1</span><span class="grade grade-strong-mod" data-tip="Strong recommendation, moderate-quality evidence (1⊕⊕⊕○)">1/Mod</span></div>
@@ -348,7 +359,7 @@
       </ul>
 
       <!-- Section 2 -->
-      <div style="font-size:11px;font-weight:700;color:var(--text2);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.5px">Section 2. 최적 진단 검사</div>
+      <div style="font-size: calc(11px * var(--fscale, 1));font-weight:700;color:var(--text2);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.5px">Section 2. 최적 진단 검사</div>
       <ul class="rec-list">
         <li class="rec-item">
           <div class="rec-badges"><span class="rec-num">2.1</span><span class="grade grade-weak-low" data-tip="Weak recommendation, low-quality evidence (2⊕⊕○○)">2/Low</span></div>
@@ -377,7 +388,7 @@
       </ul>
 
       <!-- Section 3 -->
-      <div style="font-size:11px;font-weight:700;color:var(--text2);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.5px">Section 3. 성인 치료</div>
+      <div style="font-size: calc(11px * var(--fscale, 1));font-weight:700;color:var(--text2);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.5px">Section 3. 성인 치료</div>
       <ul class="rec-list">
         <li class="rec-item">
           <div class="rec-badges"><span class="rec-num">3.1</span><span class="grade grade-strong-high" data-tip="Strong recommendation, high-quality evidence (1⊕⊕⊕⊕)">1/High</span></div>
@@ -438,7 +449,7 @@
       </ul>
 
       <!-- Section 4 -->
-      <div style="font-size:11px;font-weight:700;color:var(--text2);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.5px">Section 4. 부신위기 관리 및 예방</div>
+      <div style="font-size: calc(11px * var(--fscale, 1));font-weight:700;color:var(--text2);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.5px">Section 4. 부신위기 관리 및 예방</div>
       <ul class="rec-list">
         <li class="rec-item">
           <div class="rec-badges"><span class="rec-num">4.1</span><span class="grade grade-strong-mod" data-tip="Strong recommendation, moderate-quality evidence (1⊕⊕⊕○)">1/Mod</span></div>
@@ -455,7 +466,7 @@
       </ul>
 
       <!-- Section 5 -->
-      <div style="font-size:11px;font-weight:700;color:var(--text2);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.5px">Section 5. 추가 모니터링</div>
+      <div style="font-size: calc(11px * var(--fscale, 1));font-weight:700;color:var(--text2);margin:8px 0 4px;text-transform:uppercase;letter-spacing:0.5px">Section 5. 추가 모니터링</div>
       <ul class="rec-list">
         <li class="rec-item">
           <div class="rec-badges"><span class="rec-num">5.1–5.5</span><span class="grade grade-bp" data-tip="Ungraded best practice statement">BP</span></div>
@@ -920,7 +931,7 @@
 
       <div class="grid2" style="margin-top:8px;gap:8px">
         <div>
-          <div style="font-size:11px;font-weight:700;color:var(--text2);margin-bottom:4px;text-transform:uppercase">성인 부신위기 프로토콜</div>
+          <div style="font-size: calc(11px * var(--fscale, 1));font-weight:700;color:var(--text2);margin-bottom:4px;text-transform:uppercase">성인 부신위기 프로토콜</div>
           <ol class="nlist">
             <li>즉시: <span class="dose dose-ok">Hydrocortisone 100 mg IV bolus</span></li>
             <li>수액: <span class="dose dose-ok">생리식염수 1,000 mL IV</span> 첫 1시간 이내</li>
@@ -931,7 +942,7 @@
           </ol>
         </div>
         <div>
-          <div style="font-size:11px;font-weight:700;color:var(--text2);margin-bottom:4px;text-transform:uppercase">소아 부신위기 프로토콜</div>
+          <div style="font-size: calc(11px * var(--fscale, 1));font-weight:700;color:var(--text2);margin-bottom:4px;text-transform:uppercase">소아 부신위기 프로토콜</div>
           <ol class="nlist">
             <li><span class="dose">생리식염수 20 mL/kg IV bolus</span>; 쇼크 시 최대 60 mL/kg 1h 이내</li>
             <li><span class="dose dose-ok">HC 50–100 mg/m² IV bolus</span></li>
@@ -1089,14 +1100,14 @@
       <p style="margin-bottom:6px">표준 스테로이드 대체요법으로 치료받는 Addison 병 환자에서도 HRQoL이 감소되어 있다. 장기적 HRQoL은 진단 지연 기간에 반비례한다.</p>
       <div class="grid2" style="gap:8px">
         <div>
-          <div style="font-size:11px;font-weight:700;margin-bottom:4px;color:var(--text2)">진단 분야</div>
+          <div style="font-size: calc(11px * var(--fscale, 1));font-weight:700;margin-bottom:4px;color:var(--text2)">진단 분야</div>
           <ul class="blist">
             <li><strong>LC-MS/MS</strong>: 특이적 cortisol 측정; 단일 분석에서 다수 스테로이드 동시 정량</li>
             <li><strong>타액 cortisol</strong>: biomarker로서 가능성 조사 중</li>
           </ul>
         </div>
         <div>
-          <div style="font-size:11px;font-weight:700;margin-bottom:4px;color:var(--text2)">치료 분야</div>
+          <div style="font-size: calc(11px * var(--fscale, 1));font-weight:700;margin-bottom:4px;color:var(--text2)">치료 분야</div>
           <ul class="blist">
             <li><strong>변형/이중 방출 hydrocortisone (Plenadren 등)</strong>: 일중 리듬 재현</li>
             <li><strong>연속 피하 HC 주입</strong>: 인슐린 펌프 활용; 개방 교차 연구에서 HRQoL 개선</li>
@@ -1122,6 +1133,20 @@
 </div><!-- /main -->
 
 <script>
+const FONT_ZOOM_LEVELS = [1, 1.25, 1.5];
+let fontZoomIndex = 0;
+
+function applyFontZoom(scale) {
+  document.documentElement.style.setProperty('--fscale', scale);
+  const label = document.getElementById('font-zoom-label');
+  if (label) label.textContent = Math.round(scale * 100) + '%';
+}
+
+function cycleFontZoom() {
+  fontZoomIndex = (fontZoomIndex + 1) % FONT_ZOOM_LEVELS.length;
+  applyFontZoom(FONT_ZOOM_LEVELS[fontZoomIndex]);
+}
+
 // ── Tab switching ──
 function showTab(id) {
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
